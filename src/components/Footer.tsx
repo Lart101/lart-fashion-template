@@ -1,24 +1,70 @@
-import { siteConfig } from "@/config/site";
-import styles from "./Footer.module.css";
+"use client"
+
+import Link from "next/link"
+import { siteConfig } from "@/config/site"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 
 export function Footer() {
-  const year = new Date().getFullYear();
-  
   return (
-    <footer className={styles.footer}>
-      <div className={`container ${styles.container}`}>
-        <div className={styles.brand}>
-          <h2 className={styles.logo}>{siteConfig.name}</h2>
-          <p className={styles.description}>{siteConfig.description}</p>
+    <footer className="border-t bg-background">
+      <div className="container mx-auto px-4 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Brand */}
+          <div className="space-y-4">
+            <h3 className="font-serif text-2xl font-bold">{siteConfig.name}</h3>
+            <p className="text-muted-foreground text-sm">
+              {siteConfig.description}
+            </p>
+            <div className="flex space-x-4">
+              <Link href={siteConfig.links.instagram} className="text-muted-foreground hover:text-foreground text-sm font-medium">
+                Instagram
+              </Link>
+              <Link href={siteConfig.links.twitter} className="text-muted-foreground hover:text-foreground text-sm font-medium">
+                Twitter
+              </Link>
+              <Link href={siteConfig.links.github} className="text-muted-foreground hover:text-foreground text-sm font-medium">
+                GitHub
+              </Link>
+            </div>
+          </div>
+
+          {/* Links */}
+          <div>
+            <h4 className="font-semibold mb-4">Shop</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><Link href="/shop" className="hover:text-foreground">New Arrivals</Link></li>
+              <li><Link href="/shop" className="hover:text-foreground">Best Sellers</Link></li>
+              <li><Link href="/shop" className="hover:text-foreground">Clothing</Link></li>
+              <li><Link href="/shop" className="hover:text-foreground">Accessories</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-4">Company</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><Link href="/about" className="hover:text-foreground">About Us</Link></li>
+              <li><Link href="/contact" className="hover:text-foreground">Contact</Link></li>
+              <li><Link href="/careers" className="hover:text-foreground">Careers</Link></li>
+              <li><Link href="/faq" className="hover:text-foreground">FAQ</Link></li>
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h4 className="font-semibold mb-4">Newsletter</h4>
+            <p className="text-sm text-muted-foreground mb-4">
+              Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.
+            </p>
+            <form className="flex space-x-2" onSubmit={(e) => e.preventDefault()}>
+              <Input type="email" placeholder="Enter your email" className="max-w-[200px]" />
+              <Button type="submit">Subscribe</Button>
+            </form>
+          </div>
         </div>
-        <div className={styles.links}>
-          <a href={siteConfig.links.instagram} target="_blank" rel="noreferrer">Instagram</a>
-          <a href={siteConfig.links.twitter} target="_blank" rel="noreferrer">Twitter</a>
+        <div className="mt-12 pt-8 border-t text-center text-sm text-muted-foreground">
+          <p>&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
         </div>
-      </div>
-      <div className={styles.bottom}>
-        <p>&copy; {year} {siteConfig.name}. All rights reserved.</p>
       </div>
     </footer>
-  );
+  )
 }
