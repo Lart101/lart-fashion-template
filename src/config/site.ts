@@ -7,8 +7,8 @@ export const siteConfig = {
     instagram: "https://instagram.com/lartfashion",
   },
   nav: [
-    { title: "Collections", href: "/collections" },
-    { title: "Lookbook", href: "/lookbook" },
+    { title: "Shop", href: "/shop" },
+    { title: "Collections", href: "/shop?category=women" },
     { title: "About", href: "/about" },
   ]
 };
